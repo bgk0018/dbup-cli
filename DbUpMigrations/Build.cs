@@ -1,5 +1,6 @@
 ﻿using DbUp;
 using DbUp.Builder;
+using DbUp.Engine;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -25,7 +26,7 @@ namespace DbUpMigrations
             }
         }
 
-        public static UpgradeEngineBuilder Execute(Options opts)
+        public static UpgradeEngine Execute(Options opts)
         {
             EnsureDatabase.For.SqlDatabase(opts.ConnectionString);
 
@@ -42,7 +43,7 @@ namespace DbUpMigrations
                 builder.LogScriptOutput() :
                 builder;
 
-            return builder;
+            return builder.Build();
         }
     }
 }

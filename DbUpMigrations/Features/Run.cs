@@ -25,10 +25,9 @@ namespace DbUpMigrations.Features
             }
         }
 
-        public static void Execute(Options opts, Func<Build.Options, UpgradeEngineBuilder> builder)
+        public static void Execute(Options opts, Func<Build.Options, UpgradeEngine> builder)
         {
             builder(new Build.Options(opts.ConnectionString, opts.Quiet, false))
-                .Build()
                 .PerformUpgrade();
         }
     }
