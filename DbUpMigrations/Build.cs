@@ -15,10 +15,13 @@ namespace DbUpMigrations
 
             public bool Quiet { get; }
 
-            public Options(string connectionString, bool quiet)
+            public bool LogScriptResult { get; }
+
+            public Options(string connectionString, bool quiet, bool logScriptResult)
             {
                 ConnectionString = connectionString;
                 Quiet = quiet;
+                LogScriptResult = logScriptResult;
             }
         }
 
@@ -26,12 +29,18 @@ namespace DbUpMigrations
         {
             EnsureDatabase.For.SqlDatabase(opts.ConnectionString);
 
-            var builder = DeployChanges.To.SqlDatabase(opts.ConnectionString, null)
-                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly());
+            var builder = DeployChanges.To
+                .SqlDatabase(opts.ConnectionString, null)
+                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                .WithTransaction();
 
             builder = opts.Quiet ?
                 builder.LogToNowhere() :
                 builder.LogToConsole();
+
+            builder = opts.LogScriptResult ?
+                builder.LogScriptOutput() :
+                builder;
 
             return builder;
         }

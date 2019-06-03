@@ -6,12 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.5.0" />
-    <PackageReference Include="dbup" Version="4.2.0" />
+    <None Remove="Scripts\1052622019_Init.sql" />
+    <None Remove="Scripts\1059622019_CustomerGet.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <EmbeddedResource Include="Scripts\1059622019_CustomerGet.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\1052622019_Init.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.5.0" />
+    <PackageReference Include="dbup" Version="4.2.0" />
   </ItemGroup>
 
 </Project>

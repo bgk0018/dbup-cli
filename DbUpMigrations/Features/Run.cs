@@ -15,7 +15,7 @@ namespace DbUpMigrations.Features
             [Value(0, MetaName = "Connection String", Required = true, HelpText = "Connection string for the database to report on")]
             public string ConnectionString { get; }
 
-            [Option('q', "quiet", MetaValue = "[true, false]", HelpText = "Stops output to the console. Default is false.")]
+            [Option('q', "quiet", HelpText = "Stops output to the console.")]
             public bool Quiet { get; }
 
             public Options(string connectionString, bool quiet)
@@ -27,7 +27,7 @@ namespace DbUpMigrations.Features
 
         public static void Execute(Options opts, Func<Build.Options, UpgradeEngineBuilder> builder)
         {
-            builder(new Build.Options(opts.ConnectionString, opts.Quiet))
+            builder(new Build.Options(opts.ConnectionString, opts.Quiet, false))
                 .Build()
                 .PerformUpgrade();
         }

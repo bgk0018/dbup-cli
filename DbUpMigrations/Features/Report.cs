@@ -1,6 +1,5 @@
 ﻿using CommandLine;
 using DbUp.Builder;
-using DbUp.Engine;
 using DbUp.Helpers;
 using System;
 
@@ -14,10 +13,10 @@ namespace DbUpMigrations.Features
             [Value(0, MetaName = "Connection String", Required = true, HelpText = "Connection string for the database to report on")]
             public string ConnectionString { get; }
 
-            [Option('q', "quiet", MetaValue = "[true, false]", HelpText = "Stops output to the console. Default is false.")]
+            [Option('q', "quiet", HelpText = "Stops output to the console.")]
             public bool Quiet { get; }
 
-            [Option('p', "path", MetaValue = "[String]", HelpText = "Path to where the report will be published.")]
+            [Option('p', "path", Default = ".\\Report.html", MetaValue = "[String]", HelpText = "Path to where the report will be published.")]
             public string ReportPath { get; }
 
             public Options(string connectionString, bool quiet, string reportPath)
@@ -30,9 +29,9 @@ namespace DbUpMigrations.Features
 
         public static void Execute(Options opts, Func<Build.Options, UpgradeEngineBuilder> builder)
         {
-            builder(new Build.Options(opts.ConnectionString, opts.Quiet))
+            builder(new Build.Options(opts.ConnectionString, opts.Quiet, false))
                 .Build()
-                .GenerateUpgradeHtmlReport(opts.ReportPath);
+                .GenerateUpgradeHtmlReport(opts.ReportPath ?? ".\\Report.html");
         }
     }
 }

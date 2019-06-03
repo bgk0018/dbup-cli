@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE CustomerGet
+AS
+SELECT * FROM Customer
+GO;
