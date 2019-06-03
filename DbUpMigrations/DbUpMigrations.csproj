@@ -6,16 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\1052622019_Init.sql" />
-    <None Remove="Scripts\1059622019_CustomerGet.sql" />
+    <None Remove="Scripts\201906021113_Init.sql" />
+    <None Remove="Scripts\201906021114_CustomerGet.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\1059622019_CustomerGet.sql" />
+    <EmbeddedResource Include="Scripts\201906021114_CustomerGet.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\1052622019_Init.sql" />
+    <EmbeddedResource Include="Scripts\201906021113_Init.sql" />
   </ItemGroup>
 
   <ItemGroup>

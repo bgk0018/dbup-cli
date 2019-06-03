@@ -11,10 +11,9 @@ namespace DbUpMigrations
         {
             try
             {
-                Parser.Default.ParseArguments<Report.Options, Run.Options, Script.Options>(args)
+                Parser.Default.ParseArguments<Report.Options, Run.Options>(args)
                     .WithParsed<Report.Options>(opts => Report.Execute(opts, Build.Execute))
-                    .WithParsed<Run.Options>(opts => Run.Execute(opts, Build.Execute))
-                    .WithParsed<Script.Options>(opts => Script.Execute(opts, Build.Execute));
+                    .WithParsed<Run.Options>(opts => Run.Execute(opts, Build.Execute));
             }
             catch (Exception ex)
             {
