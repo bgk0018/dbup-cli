@@ -31,7 +31,7 @@ namespace DbUpMigrations.Features
         {
             builder(new Build.Options(opts.ConnectionString, opts.Quiet, false))
                 .Build()
-                .GenerateUpgradeHtmlReport(opts.ReportPath ?? ".\\Report.html");
+                .GenerateUpgradeHtmlReport(opts.ReportPath);
         }
     }
 }
